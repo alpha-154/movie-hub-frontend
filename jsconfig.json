@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+  },
+  "include": ["src/**/*"], // Include all files in the src directory
+  "exclude": ["node_modules", "dist"] // Exclude generated files and node_modules
+}
+
+//  "strict": true // Enables all strict type-checking options
+// "checkJs": true, // Enable type-checking for JavaScript files
+// // Allow JavaScript files in the project
