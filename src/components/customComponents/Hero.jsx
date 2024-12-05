@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import avenger from "../../../public/avengers.jpg";
+import avenger from "../../../public/avengers.jpg"
 import squidgame from "../../../public/squidgame.jpg";
 import oppenheimer from "../../../public/oppenheimer.jpg";
 
@@ -49,7 +49,7 @@ const Hero = () => {
               for every mood and every movie lover.
             </p>
             <div data-aos="fade-up" data-aos-delay="600">
-              <a href="#adventures" className="mt-4">
+              <a href="#featured-movies" className="mt-4">
                 <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
                   Featured Movies
                 </button>

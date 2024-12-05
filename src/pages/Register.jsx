@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "sonner";
 import { registerUser } from "@/api";
 
@@ -46,11 +45,14 @@ const Register = () => {
       await updateProfile(userCredential.user, { displayName: name, photoURL });
       const firebaseUser = userCredential.user;
       console.log("user-> ", firebaseUser);
+      console.log("userUid-> ", firebaseUser.uid);
+      
+
       const response = await registerUser({
         firebaseUid: firebaseUser.uid,
-        name,
-        email,
-        profileImage: photoURL,
+        name: firebaseUser.displayName,
+        email: firebaseUser.email,
+        profileImage: firebaseUser.photoURL,
       });
       if(response.status === 201){
         toast.success("Registration successful!");

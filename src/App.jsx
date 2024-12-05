@@ -14,6 +14,7 @@ import AddMovie from "./pages/AddMovie";
 import FavouriteMovies from "./pages/FavoriteMovies";
 import Error from "./pages/Error";
 import { Toaster } from "./components/ui/sonner";
+import UpdateMovie from "./pages/UpdateMovie";
 
 
 //import 'aos/dist/aos.css'
@@ -69,6 +70,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AllMovies/>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/update-movie/:id"
+            element={
+              <PrivateRoute>
+                <UpdateMovie/>
               </PrivateRoute>
             }
           />

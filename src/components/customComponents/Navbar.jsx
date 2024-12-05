@@ -67,12 +67,15 @@ const Navbar = () => {
       {/* Desktop Navbar */}
       <nav className="shadow-md px-4 py-3  justify-between items-center dark:border dark:border-gray-800 dark:rounded-lg md:flex hidden">
         {/* Logo */}
-        <div className="flex items-center">
+       
+         <div className="flex items-center">
           <Film className="h-8 w-8 mr-2 text-blue-500" />
           <span className="font-bold text-xl text-gray-900 dark:text-white">
             MovieHub
           </span>
         </div>
+
+        
 
         {/* Desktop Navigation Links */}
         <div className="flex items-center space-x-4">
@@ -157,12 +160,15 @@ const Navbar = () => {
       {/* Mobile Navbar */}
       <nav className="shadow-md px-4 py-3 flex justify-between items-center md:hidden dark:border dark:border-gray-600 dark:rounded-lg">
         {/* Logo */}
-        <div className="flex items-center">
+        
+         <div className="flex items-center">
           <Film className="h-8 w-8 mr-2 text-blue-500" />
           <span className="font-bold text-xl text-gray-900 dark:text-white">
             MovieHub
           </span>
         </div>
+
+        
 
         {/* Hamburger Menu */}
         <button

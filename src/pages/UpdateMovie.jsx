@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { addMovieSchema } from "@/schema/addMovie.schema";
 import { useForm } from "react-hook-form";
@@ -21,28 +22,56 @@ import {
 } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { addMovie } from "@/api";
+import {  updateMovie , getMovieById} from "@/api";
 import { Rating } from "react-simple-star-rating";
 
-const AddMovie = () => {
+
+const UpdateMovie = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [movie, setMovie] = useState({});
+  const [fetchloading, setFetchLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(movie?.posterImg || null);
   const [preview, setPreview] = useState(null);
-  const [selectedGenres, setSelectedGenres] = useState([]);
-  const [rating, setRating] = useState(0);
+  const [selectedGenres, setSelectedGenres] = useState( movie?.genre || []);
+  const [rating, setRating] = useState(movie?.rating || 0);
+
+
+
+
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        setFetchLoading(true);
+        const response = await getMovieById(id);
+        setMovie(response.data?.movie);
+        console.log("movie", response.data?.movie);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setFetchLoading(false);
+      }
+    };
+
+    if(id){
+      fetchMovie();
+    }
+
+  }, [id]);
+
 
   const form = useForm({
     resolver: zodResolver(addMovieSchema),
     defaultValues: {
-      uploadedBy: "",
-      title: "",
-      posterImg: "",
-      genre: [],
-      duration: "",
-      releaseYear: "",
-      rating: 0,
-      description: "",
+      uploadedBy: movie?.uploadedBy || "",
+      title: movie?.title || "",
+      posterImg: movie?.posterImg || "",
+      genre: movie?.genre || [],
+      duration:  movie?.duration || "",
+      releaseYear: movie?.releaseYear || "",
+      rating: movie?.rating || 0,
+      description: movie?.description || "",
     },
   });
 
@@ -79,7 +108,7 @@ const AddMovie = () => {
       setLoading(true);
       let imageUrl = "";
 
-      if (image) {
+      if (image && image !== movie?.posterImg) {
         console.log("image-> onSubmit()", image);
         const formData = new FormData();
         formData.append("file", image);
@@ -92,6 +121,10 @@ const AddMovie = () => {
 
         imageUrl = cloudinaryResponse.data.secure_url;
       }
+      else if (image === movie?.posterImg) {
+        imageUrl = movie?.posterImg
+
+      }
 
       const addMovieData = {
         ...data,
@@ -101,7 +134,7 @@ const AddMovie = () => {
       };
       console.log("addMovvieData", addMovieData);
 
-      const response = await addMovie(addMovieData);
+      const response = await updateMovie(addMovieData);
 
       if (response.status === 201) {
         toast.success("Movie added successfully!");
@@ -283,4 +316,4 @@ const AddMovie = () => {
   );
 };
 
-export default AddMovie;
+export default UpdateMovie;
