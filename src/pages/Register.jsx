@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/firebase";
 import { toast } from "sonner";
 import { registerUser } from "@/api";
+import { Loader2 } from "lucide-react";
 
 const Register = () => {
   useEffect(() => {
