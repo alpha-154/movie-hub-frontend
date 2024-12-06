@@ -34,30 +34,30 @@ const UpdateProfile = () => {
 
   return (
     <div className="container mx-auto p-4 flex flex-col justify-center min-h-[70vh]">
-      <div className='px-8 py-6 bg-white shadow-lg border border-gray-300 rounded-lg'>
+      <div className='px-8 py-6 shadow-lg border border-gray-300 rounded-lg'>
       <h1 className="text-2xl mb-4">Update Profile</h1>
-      <label htmlFor='username' className="block mb-2 text-gray-600">Update Username:</label>
+      <label htmlFor='username' className="block mb-2 ">Update Username:</label>
       <input
         id='username'
         type="text"
         placeholder="Name"
-        className="block border p-2 w-full mb-4"
+        className="block border p-2 w-full mb-4 text-black"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <label htmlFor='password' className="block mb-2 text-gray-600">Update Profile Picture:</label>
+      <label htmlFor='password' className="block mb-2 ">Update Profile Picture:</label>
       <input
       id='password'
         type="url"
         placeholder="Photo URL"
-        className="block border p-2 w-full mb-4"
+        className="block border p-2 w-full mb-4 text-black"
         value={photoURL}
         onChange={(e) => setPhotoURL(e.target.value)}
       />
 
       <button
         onClick={handleUpdate}
-        className="bg-blue-500 text-white p-2 w-full border rounded hover:bg-blue-600"
+        className="bg-blue-500  p-2 w-full border rounded hover:bg-blue-600"
       >
         Update Information
       </button>

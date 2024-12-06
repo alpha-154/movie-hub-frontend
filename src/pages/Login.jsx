@@ -5,11 +5,11 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  signInWithRedirect
+  signInWithRedirect,
 } from "firebase/auth";
 import { auth } from "@/firebase";
 import { toast } from "sonner";
-
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   useEffect(() => {
@@ -18,58 +18,61 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showForgotPassword, setShowForgotPassword] = useState(false); // Manage forgot password form visibility
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Handle standard email/password login
   const handleLogin = async () => {
     try {
+      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Redirecting to homepage...");
       navigate("/");
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   // Handle Google login
-  const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      let result;
-      if (window.innerWidth < 768) {
-        // Use redirect for mobile devices
-        await signInWithRedirect(auth, provider);
-      } else {
-        // Use popup for desktop
-        result = await signInWithPopup(auth, provider);
-      }
-  
-      const user = result?.user || auth?.currentUser;
-  
-      // Extract user information
-      const userData = {
-        firebaseUid: user.uid,
-        name: user.displayName,
-        email: user.email,
-        profileImage: user.photoURL,
-      };
-  
-      // Make an API call to check if the user exists and save if not
-      const response = await registerUserWithGoogle(userData);
-  
-      if (response.status === 201) {
-        toast.success("Google Login successful! Account created.");
-      } else if (response.status === 200) {
-        toast.success("Google Login successful!");
-      }
-  
-      // Redirect to homepage
-      navigate("/");
-    } catch (error) {
-      toast.error(error.message || "An error occurred during Google login.");
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   const provider = new GoogleAuthProvider();
+  //   try {
+  //     let result;
+  //     if (window.innerWidth < 768) {
+  //       // Use redirect for mobile devices
+  //       await signInWithRedirect(auth, provider);
+  //     } else {
+  //       // Use popup for desktop
+  //       result = await signInWithPopup(auth, provider);
+  //     }
+
+  //     const user = result?.user || auth?.currentUser;
+
+  //     // Extract user information
+  //     const userData = {
+  //       firebaseUid: user.uid,
+  //       name: user.displayName,
+  //       email: user.email,
+  //       profileImage: user.photoURL,
+  //     };
+
+  //     // Make an API call to check if the user exists and save if not
+  //     const response = await registerUserWithGoogle(userData);
+
+  //     if (response.status === 201) {
+  //       toast.success("Google Login successful! Account created.");
+  //     } else if (response.status === 200) {
+  //       toast.success("Google Login successful!");
+  //     }
+
+  //     // Redirect to homepage
+  //     navigate("/");
+  //   } catch (error) {
+  //     toast.error(error.message || "An error occurred during Google login.");
+  //   }
+  // };
 
   return (
     <div className="container-style min-h-screen flex justify-center  items-center">
@@ -95,7 +98,14 @@ const Login = () => {
           onClick={handleLogin}
           className="bg-blue-500 hover:bg-blue-400 text-white p-2 w-full mb-4 border rounded-lg"
         >
-          Login
+          {loading ? (
+            <div className="flex items-center gap-2">
+              <Loader2 className="animate-spin text-blue-500" />
+              <span className="ml-2">Logging in...</span>
+            </div>
+          ) : (
+            "Login"
+          )}
         </button>
 
         {/* <button
