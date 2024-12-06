@@ -111,14 +111,7 @@ const Register = () => {
           onClick={handleRegister}
           className="bg-blue-500 hover:bg-blue-400 text-white p-2 w-full mb-4 border rounded-lg"
         >
-          {loading ? (
-            <div className="flex items-center gap-2">
-              <Loader2 className="animate-spin text-blue-500" />
-              <span className="ml-2">Registering...</span>
-            </div>
-          ) : (
-            "Register"
-          )}
+          { loading ? "Registering..." : "Register"}
         </button>
         <div className="">
           <Link to="/login" className="text-blue-600">

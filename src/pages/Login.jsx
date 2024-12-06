@@ -98,14 +98,7 @@ const Login = () => {
           onClick={handleLogin}
           className="bg-blue-500 hover:bg-blue-400 text-white p-2 w-full mb-4 border rounded-lg"
         >
-          {loading ? (
-            <div className="flex items-center gap-2">
-              <Loader2 className="animate-spin text-blue-500" />
-              <span className="ml-2">Logging in...</span>
-            </div>
-          ) : (
-            "Login"
-          )}
+           { loading ? "logging in..." : "Login"}
         </button>
 
         {/* <button
