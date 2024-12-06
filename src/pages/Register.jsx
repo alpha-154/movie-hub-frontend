@@ -71,28 +71,28 @@ const Register = () => {
       <input
         type="text"
         placeholder="Name"
-       className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl"
+       className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl text-black"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
         type="email"
         placeholder="Email"
-        className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl"
+        className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl text-black"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="url"
         placeholder="Photo URL"
-         className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl"
+         className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl text-black"
         value={photoURL}
         onChange={(e) => setPhotoURL(e.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
-         className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl"
+         className="block p-2 w-full mb-4 hover:outline-none focus:outline-none border focus:border-gray-400 rounded-xl text-black"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
