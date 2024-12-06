@@ -217,7 +217,7 @@ const Navbar = () => {
             onClick={closeSidebar}
           >
             <Home className="h-5 w-5 mr-2 dark:text-blue-600" />
-            <span className="font-bold text-md text-gray-900 dark:text-white">
+            <span className="font-bold text-md text-gray-900 dark:text-blue-500">
               MovieHub
             </span>
           </NavLink>
@@ -229,7 +229,7 @@ const Navbar = () => {
             onClick={closeSidebar}
           >
             <Film className="h-5 w-5 mr-2 dark:text-blue-600" />
-            <span className="font-bold text-md text-gray-900 dark:text-white">
+            <span className="font-bold text-md text-gray-900 dark:text-blue-500">
               All Movies
             </span>
           </NavLink>
@@ -241,7 +241,7 @@ const Navbar = () => {
               className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center text-gray-800 hover:text-blue-600"
             >
               <PlusCircle className="h-5 w-5 mr-2 dark:text-blue-600" />
-              <span className="font-bold text-md text-gray-900 dark:text-white">
+              <span className="font-bold text-md text-gray-900 dark:text-blue-500">
                 Movies
               </span>
             </button>
@@ -254,15 +254,19 @@ const Navbar = () => {
                   onClick={closeSidebar}
                 >
                   <PlusCircle className="h-4 w-4 mr-2 dark:text-blue-600" />
-                  Add Movie
+                  <span className="font-bold text-md text-gray-900 dark:text-blue-500">
+                    Add Movies
+                  </span>
                 </NavLink>
                 <NavLink
                   to="/favourite-movies"
                   className="pl-10 pr-4 py-2 hover:bg-blue-50 flex items-center text-gray-800 hover:text-blue-600"
                   onClick={closeSidebar}
                 >
-                  <Star className="h-4 w-4 mr-2" />
-                  My Favorites
+                  <Star className="h-4 w-4 mr-2 dark:text-blue-600" />
+                  <span className="font-bold text-md text-gray-900 dark:text-blue-500">
+                    My Favorites
+                  </span>
                 </NavLink>
               </div>
             )}
