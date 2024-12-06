@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import { addMovieSchema } from "@/schema/addMovie.schema";
 import { useForm } from "react-hook-form";
@@ -20,17 +19,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import {  updateMovie , getMovieById} from "@/api";
 import { Rating } from "react-simple-star-rating";
 
 
 const UpdateMovie = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const { id } = useParams();
   const [movie, setMovie] = useState({});
-  const [fetchloading, setFetchLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(movie?.posterImg || null);
   const [preview, setPreview] = useState(null);
@@ -38,6 +37,19 @@ const UpdateMovie = () => {
   const [rating, setRating] = useState(movie?.rating || 0);
 
 
+  const form = useForm({
+    resolver: zodResolver(addMovieSchema),
+    defaultValues: {
+      uploadedBy: movie?.uploadedBy || "",
+      title: movie?.title || "",
+      posterImg: movie?.posterImg || "",
+      genre: movie?.genre || [],
+      duration:  movie?.duration || "",
+      releaseYear: movie?.releaseYear || "",
+      rating: movie?.rating || 0,
+      description: movie?.description || "",
+    },
+  });
 
 
   useEffect(() => {
@@ -61,20 +73,26 @@ const UpdateMovie = () => {
   }, [id]);
 
 
-  const form = useForm({
-    resolver: zodResolver(addMovieSchema),
-    defaultValues: {
+  // Update form data when movie state changes
+  useEffect(() => {
+    form.reset({
       uploadedBy: movie?.uploadedBy || "",
       title: movie?.title || "",
       posterImg: movie?.posterImg || "",
       genre: movie?.genre || [],
-      duration:  movie?.duration || "",
+      duration: movie?.duration || "",
       releaseYear: movie?.releaseYear || "",
       rating: movie?.rating || 0,
       description: movie?.description || "",
-    },
-  });
+    });
+    setSelectedGenres(movie?.genre || []);
+    setRating(movie?.rating || 0);
+    setImage(movie?.posterImg || null);
+    setPreview(movie?.posterImg || null);
+  }, [movie, form]);
 
+
+  
   // Handle file upload
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
@@ -95,8 +113,7 @@ const UpdateMovie = () => {
     console.log("selectedGenres", selectedGenres);
   };
 
-  // Handle rating change
-  // Handle Rating Change
+  
   const handleRatingChange = (newRating) => {
     setRating(newRating); // Convert ratingValue to 1-5 scale
     console.log("Rating:", newRating);
@@ -132,7 +149,7 @@ const UpdateMovie = () => {
         rating: rating, // Convert rating to a 1-10 scale
         posterImg: imageUrl,
       };
-      console.log("addMovvieData", addMovieData);
+      console.log("updateMovieData", addMovieData);
 
       const response = await updateMovie(addMovieData);
 
@@ -163,7 +180,10 @@ const UpdateMovie = () => {
 
   return (
     <div className="flex flex-col items-center justify-center p-10">
-      <div className="border border-gray-200 rounded-xl p-6 md:p-8 shadow-[0_0_20px_rgba(0,0,0,0.15)]">
+      { !movie  ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="border border-gray-200 rounded-xl p-6 md:p-8 shadow-[0_0_20px_rgba(0,0,0,0.15)]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -306,12 +326,14 @@ const UpdateMovie = () => {
                   <span>Adding...</span>
                 </Button>
               ) : (
-                <Button type="submit">Add Movie</Button>
+                <Button type="submit">Update Movie</Button>
               )}
             </div>
           </form>
         </Form>
       </div>
+       )}
+     
     </div>
   );
 };

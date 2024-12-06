@@ -14,6 +14,7 @@ const Profile = () => {
 
 
   const [user] = useAuthState(auth);
+  console.log("user-> ", user);
   console.log("user-> uid", user.uid);
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const Profile = () => {
 
   return (
     <div className="container-style py-24 px-16">
-      <div className="w-full p-8 border bg-white border-gray-200 shadow-[0_0_20px_rgba(0,0,0,0.15)] rounded-xl">
+      <div className="w-full p-8 border shadow-[0_0_20px_rgba(0,0,0,0.15)] rounded-xl">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl mb-6">Welcome {user?.displayName} to your profile:</h1>
       </div>

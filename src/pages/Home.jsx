@@ -3,6 +3,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import Hero from "@/components/customComponents/Hero";
 import FeaturedMovies from "../components/customComponents/FeaturedMovies";
+import ReviewMovie from "@/components/customComponents/ReviewMovie";
+import TestimonialSection from "@/components/customComponents/Testimonial";
 
 const Home = () => {
   // dynamic title on the browser's title bar
@@ -49,6 +51,10 @@ const Home = () => {
       <Hero/>
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-neutral-950 dark:text-gray-200 tracking-wide text-center mb-5 md:mb-10">Featured Movies</h1>
       <FeaturedMovies/>
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-neutral-950 dark:text-gray-200 tracking-wide text-center mb-5 md:mb-10">Review Movie</h1>
+      <ReviewMovie/>
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-neutral-950 dark:text-gray-200 tracking-wide text-center mb-5 md:mb-10">Users Reviews</h1>
+      <TestimonialSection/>
     </div>
   );
 };

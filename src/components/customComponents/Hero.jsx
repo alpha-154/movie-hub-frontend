@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import avenger from "../../../public/avengers.jpg"
 import squidgame from "../../../public/squidgame.jpg";
 import oppenheimer from "../../../public/oppenheimer.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -48,13 +49,19 @@ const Hero = () => {
               Stream timeless classics and the latest blockbusters—all curated
               for every mood and every movie lover.
             </p>
-            <div data-aos="fade-up" data-aos-delay="600">
+            <div data-aos="fade-up" data-aos-delay="600" className="flex items-center gap-4">
               <a href="#featured-movies" className="mt-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
-                  Featured Movies
+                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                  Explore
                 </button>
               </a>
+              <Link to="/trending-movies">
+              <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                  Trending
+                </button>
+              </Link>
             </div>
+
           </div>
 
           {/* Right Section - Image Slider */}

@@ -15,6 +15,7 @@ import FavouriteMovies from "./pages/FavoriteMovies";
 import Error from "./pages/Error";
 import { Toaster } from "./components/ui/sonner";
 import UpdateMovie from "./pages/UpdateMovie";
+import TrendingMovies from "./pages/TrendingMovies";
 
 
 //import 'aos/dist/aos.css'
@@ -66,13 +67,14 @@ function App() {
             }
           />
           <Route
-            path="/add-movies"
+            path="/trending-movies"
             element={
               <PrivateRoute>
-                <AllMovies/>
+                <TrendingMovies />
               </PrivateRoute>
             }
           />
+         
           <Route
             path="/update-movie/:id"
             element={

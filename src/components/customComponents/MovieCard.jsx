@@ -24,7 +24,7 @@ const MovieCard = ({movie, viewDetails, deleteMovieButton, addToWatchList , dele
       }
     } catch (error) {
       console.log("error", error);
-      toast.error(error.message);
+      toast.error(error.response.data.message);
     }
   }
 
@@ -39,7 +39,7 @@ const MovieCard = ({movie, viewDetails, deleteMovieButton, addToWatchList , dele
       }
     } catch (error) {
       console.log("error", error);
-      toast.error(error.message);
+      toast.error(error.response.data.message);
     }
   }
 
@@ -55,7 +55,7 @@ const MovieCard = ({movie, viewDetails, deleteMovieButton, addToWatchList , dele
       }
     } catch (error) {
       console.log("error", error);
-      toast.error(error.message);
+      toast.error(error.response.data.message);
     }
     window.Reload();
   }
@@ -64,7 +64,7 @@ const MovieCard = ({movie, viewDetails, deleteMovieButton, addToWatchList , dele
 
   return (
     <div
-    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+    className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:border dark:border-gray-800"
   >
     <div className="relative aspect-[4/3]">
       <img
@@ -72,7 +72,7 @@ const MovieCard = ({movie, viewDetails, deleteMovieButton, addToWatchList , dele
         alt={movie.title}
         className="w-full h-full object-cover"
       />
-      <div className="absolute top-4 right-4 bg-white px-4 py-1 rounded-full shadow-md">
+      <div className="absolute top-4 right-4 px-4 py-1 rounded-full shadow-md">
         <span className="font-semibold text-blue-600">
           ⭐️{movie.rating}
         </span>
@@ -98,21 +98,32 @@ const MovieCard = ({movie, viewDetails, deleteMovieButton, addToWatchList , dele
       <div className="flex items-center space-x-2 mb-2">
         <span>Release Year: {movie.releaseYear}</span>
       </div>
+      {
+        deleteMovieButton && addToWatchList &&(
+          <div className='max-w-sm flex items-center space-x-2 mb-2 '>
+          <p>Description: {movie.description}</p>
+        </div>
+        )
+      }
+     
+      <div className='flex flex-col gap-2'>
       { viewDetails && (
          <Button onClick={() => navigate(`/movie-details/${movie._id}`)}>View Details</Button>
       )}
       { deleteMovieButton && addToWatchList && (
         <div className='flex gap-2 items-center justify-start'>
-          <Button disabled={user.displayName !== movie.uploadedBy} className={` ${user.displayName === movie.uploadedBy ? '' : 'cursor-not-allowed'}`} onClick={handleDeleteMovie}>Delete</Button>
+          <Button   onClick={handleDeleteMovie}>Delete</Button>
           <Button onClick={handleAddToFavoriteList}>Add to Watchlist</Button>
 
-          <Button onClick={() => navigate(`/update-movie/${movie._id}`)} disabled={user.displayName !== movie.uploadedBy} className={` ${user.displayName === movie.uploadedBy ? '' : 'cursor-not-allowed'}`}>Update</Button>
+          <Button onClick={() => navigate(`/update-movie/${movie._id}`)}  >Update</Button>
 
         </div>
       )}
      {  deleteFromWatchList && (
-       <Button className='ml-2' onClick={handleRemoveMovieFromFavoriteList}>Remove from Watchlist</Button>
+       <Button className='' onClick={handleRemoveMovieFromFavoriteList}>Remove from Watchlist</Button>
      )}
+      </div>
+    
     
      
     </div>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { addMovieSchema } from "@/schema/addMovie.schema";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -23,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { addMovie } from "@/api";
 import { Rating } from "react-simple-star-rating";
+import { Textarea } from "@/components/ui/textarea";
 
 const AddMovie = () => {
   const navigate = useNavigate();
@@ -45,6 +47,12 @@ const AddMovie = () => {
       description: "",
     },
   });
+
+    // dynamic title on the browser's title bar
+    useEffect(() => {
+      document.title = "Add Movie - Movie Hub";
+    }, []);
+  
 
   // Handle file upload
   const handleFileChange = (e) => {
@@ -96,7 +104,7 @@ const AddMovie = () => {
       const addMovieData = {
         ...data,
         genre: selectedGenres,
-        rating: rating, // Convert rating to a 1-10 scale
+        rating: rating,
         posterImg: imageUrl,
       };
       console.log("addMovvieData", addMovieData);
@@ -119,7 +127,7 @@ const AddMovie = () => {
       setImage(null);
       setPreview(null);
       setRating(0);
-        setSelectedGenres([]);
+      setSelectedGenres([]);
       if (err.response && err.response.data) {
         toast.error(err.response.data.message);
       } else {
@@ -130,6 +138,7 @@ const AddMovie = () => {
 
   return (
     <div className="flex flex-col items-center justify-center p-10">
+      <h1 className='text-xl md:text-2xl lg:text-3xl font-bold tracking-wide text-center mb-5 md:mb-10 border  border-gray-200 rounded-md p-2 w-fit mx-auto'>Add Movie</h1>
       <div className="border border-gray-200 rounded-xl p-6 md:p-8 shadow-[0_0_20px_rgba(0,0,0,0.15)]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -212,18 +221,17 @@ const AddMovie = () => {
                   <FormLabel>Rating</FormLabel>
                   {/* Rating Component */}
                   <div>
-                  <Rating
-                    className="flex items-center justify-center"
-                    onClick={handleRatingChange}
-                    ratingValue={rating} // Convert to percentage for rendering
-                    size={30} // Adjust star size
-                    allowHalfIcon={false} // Disable half stars
-                  />
-                  <p className="mt-2 text-gray-600">
-                    Current Rating: {rating} / 5
-                  </p>
+                    <Rating
+                      className="flex items-center justify-center"
+                      onClick={handleRatingChange}
+                      ratingValue={rating} // Convert to percentage for rendering
+                      size={30} // Adjust star size
+                      allowHalfIcon={false} // Disable half stars
+                    />
+                    <p className="mt-2 text-gray-600">
+                      Current Rating: {rating} / 5
+                    </p>
                   </div>
-                 
                 </FormItem>
               )}
             />
@@ -258,7 +266,7 @@ const AddMovie = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input
+                    <Textarea
                       type="text"
                       placeholder="Add a description..."
                       {...field}

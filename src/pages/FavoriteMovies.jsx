@@ -12,6 +12,12 @@ const FavouriteMovies = () => {
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
 
+    // dynamic title on the browser's title bar
+    useEffect(() => {
+      document.title = "Favorite Movies - Movie Hub";
+    }, []);
+  
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -36,6 +42,7 @@ const FavouriteMovies = () => {
       id="featured-movies"
       className="py-16 bg-gray-50 dark:bg-background p-4 border dark:border-gray-800 rounded-xl mb-5 md:mb-10 mt-10"
     >
+      <h1 className='text-xl md:text-2xl lg:text-3xl font-bold tracking-wide text-center mb-5 md:mb-10 border  border-gray-200 rounded-md p-2 w-fit mx-auto'>Your Favorite Movies</h1>
       <div className="container mx-auto px-4">
         {loading ? (
           <div className="flex items-center justify-center">
@@ -48,6 +55,7 @@ const FavouriteMovies = () => {
           <>
             {movies.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 {movies.map((movie) => (
                  <MovieCard key={movie._id} movie={movie} viewDetails={true}  deleteMovieButton={false}  addToWatchList={false} deleteFromWatchList={true} />
                 ))}

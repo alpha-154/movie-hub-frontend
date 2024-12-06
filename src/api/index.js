@@ -11,6 +11,9 @@ const registerUser = (registrationData) => {
     return apiClient.post("/api/user/register", registrationData);
   };
 
+const registerUserWithGoogle = (registrationData) => {
+    return apiClient.post("/api/user/register-with-google", registrationData);
+}
 
 const addMovie = (movieData) => {
     return apiClient.post("/api/movie/create-movie", movieData);
@@ -57,8 +60,19 @@ const updateMovie = (updateData) => {
     return apiClient.post("/api/movie/update-movie", updateData);
 }
 
+const searchMovies = ({query}) => {
+    return apiClient.post("/api/movie/search-movies", {
+        query: query
+    });
+}
+
+const reviewMovie = (reviewData) => {
+    return apiClient.post("/api/movie/review-movie", reviewData);
+}
+
 export {
     registerUser,
+    registerUserWithGoogle,
     addMovie,
     getTopRatedMovies,
     getAllMovies,
@@ -67,5 +81,7 @@ export {
     addToFavorite,
     getAllFavoritesMovies,
     removeMovieFromFavorite,
-    updateMovie 
+    updateMovie,
+    searchMovies,
+    reviewMovie
 }

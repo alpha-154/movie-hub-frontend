@@ -59,7 +59,7 @@ const Navbar = () => {
     transition-colors duration-300 
     py-2 px-3 
     rounded-md 
-    hover:bg-blue-50
+    hover:bg-blue-50"
   `;
 
   return (
@@ -224,7 +224,7 @@ const Navbar = () => {
 
           {/* All Movies Link */}
           <NavLink
-            to="/movies"
+            to="/all-movies"
             className="px-4 py-2 hover:bg-blue-50 flex items-center text-gray-800 hover:text-blue-600"
             onClick={closeSidebar}
           >
@@ -249,7 +249,7 @@ const Navbar = () => {
             {isMovieDropdownOpen && (
               <div>
                 <NavLink
-                  to="/movies/add"
+                  to="/add-movies"
                   className="pl-10 pr-4 py-2 hover:bg-blue-50 flex items-center text-gray-800 hover:text-blue-600"
                   onClick={closeSidebar}
                 >
@@ -257,7 +257,7 @@ const Navbar = () => {
                   Add Movie
                 </NavLink>
                 <NavLink
-                  to="/movies/favorites"
+                  to="/favourite-movies"
                   className="pl-10 pr-4 py-2 hover:bg-blue-50 flex items-center text-gray-800 hover:text-blue-600"
                   onClick={closeSidebar}
                 >

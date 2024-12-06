@@ -44,8 +44,8 @@ const Register = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(userCredential.user, { displayName: name, photoURL });
       const firebaseUser = userCredential.user;
-      console.log("user-> ", firebaseUser);
-      console.log("userUid-> ", firebaseUser.uid);
+     // console.log("user-> ", firebaseUser);
+     // console.log("userUid-> ", firebaseUser.uid);
       
 
       const response = await registerUser({

@@ -12,6 +12,12 @@ const AdventureDetails = () => {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
 
+    // dynamic title on the browser's title bar
+    useEffect(() => {
+      document.title = "Movie Details - Movie Hub";
+    }, []);
+  
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -36,7 +42,7 @@ const AdventureDetails = () => {
  
   return (
     <div className=" py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="max-w-4xl mx-auto rounded-lg shadow-lg overflow-hidden">
       { loading ? ( 
         
           <div className="flex items-center justify-center">
@@ -48,8 +54,11 @@ const AdventureDetails = () => {
       
       ) : (
         <>
-         { movie ? ( 
-          <MovieCard movie={movie} viewDetails={false} deleteMovieButton={true} addToWatchList={true} deleteFromWatchList={false} updateButton={true} />): (
+         { movie ? ( <>
+         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-5 md:mb-10">{movie.title}</h1>
+          <MovieCard movie={movie} viewDetails={false} deleteMovieButton={true} addToWatchList={true} deleteFromWatchList={false} updateButton={true} />
+         </>
+         ): (
             <div className="flex items-center justify-center">
               <div className="flex items-center space-x-2">
                 <p>Movie not found</p>
@@ -58,7 +67,6 @@ const AdventureDetails = () => {
           )}
         </>
       )}
-      
       </div>
     </div>
   );

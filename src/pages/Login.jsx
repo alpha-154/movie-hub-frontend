@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUserWithGoogle } from "@/api";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -35,12 +36,38 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log(result);
-      toast.success("Redirecting to Google login...");
+      let result;
+      if (window.innerWidth < 768) {
+        // Use redirect for mobile devices
+        await signInWithRedirect(auth, provider);
+      } else {
+        // Use popup for desktop
+        result = await signInWithPopup(auth, provider);
+      }
+  
+      const user = result?.user || auth?.currentUser;
+  
+      // Extract user information
+      const userData = {
+        firebaseUid: user.uid,
+        name: user.displayName,
+        email: user.email,
+        profileImage: user.photoURL,
+      };
+  
+      // Make an API call to check if the user exists and save if not
+      const response = await registerUserWithGoogle(userData);
+  
+      if (response.status === 201) {
+        toast.success("Google Login successful! Account created.");
+      } else if (response.status === 200) {
+        toast.success("Google Login successful!");
+      }
+  
+      // Redirect to homepage
       navigate("/");
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message || "An error occurred during Google login.");
     }
   };
 
