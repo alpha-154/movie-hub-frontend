@@ -98,12 +98,12 @@ const Login = () => {
           Login
         </button>
 
-        <button
+        {/* <button
           onClick={handleGoogleLogin}
           className="bg-red-500 hover:bg-red-400 text-white p-2 w-full mb-4 border rounded-lg"
         >
           Login with Google
-        </button>
+        </button> */}
 
         <div className="mt-4">
           <Link to="/register" className="text-blue-600">

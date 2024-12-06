@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/firebase";
-
+import { toast } from "sonner";
 
 const ResetPassword = () => {
 
@@ -37,21 +37,21 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="container mx-auto py-24">
-        <div className="bg-white border-gray-300 rounded-xl shadow-lg px-8 py-6">
+    <div className="container mx-auto py-24 ">
+        <div className="shadow-lg px-8 py-6 border border-gray-200 rounded-md">
         <h1 className="text-2xl mb-4">Forgot Password</h1>
-     <label htmlFor='email' className="block mb-2 text-gray-600">Enter your email:</label>
+     <label htmlFor='email' className="block mb-2 ">Enter your email:</label>
       <input
         type="email"
         placeholder="Email"
-        className="block border p-2 w-full mb-4"
+        className="block border p-2 w-full mb-4 text-black"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
       <button
         onClick={handlePasswordReset}
-        className="bg-blue-500 text-white p-2 w-full"
+        className="bg-blue-500 p-2 w-full"
       >
         Reset Password
       </button>
