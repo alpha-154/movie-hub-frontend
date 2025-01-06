@@ -11,6 +11,7 @@ import {
   LogIn,
   Menu,
   X,
+  Contact
 } from "lucide-react";
 import { auth } from "@/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -65,7 +66,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <nav className="shadow-md px-4 py-3  justify-between items-center dark:border dark:border-gray-800 dark:rounded-lg md:flex hidden">
+      <nav className="sticky top-0 z-50 bg-white shadow-md px-4 py-3  justify-between items-center dark:border dark:border-gray-800 dark:rounded-lg md:flex hidden">
         {/* Logo */}
        
          <div className="flex items-center">
@@ -121,6 +122,11 @@ const Navbar = () => {
             )}
           </div>
 
+          <NavLink to="/contact-us" className={navLinkStyles}>
+            <Contact className="h-5 w-5 mr-1 dark:text-blue-600" />
+            <span className="dark:text-white">Contact</span>
+          </NavLink>
+
           {/* Profile Section */}
           <div className="flex items-center justify-center">
             <Link to="/profile" className="mr-4 flex justify-center items-center gap-2">
@@ -154,11 +160,12 @@ const Navbar = () => {
               </Link>
             )}
           </div>
+          
         </div>
       </nav>
 
       {/* Mobile Navbar */}
-      <nav className="shadow-md px-4 py-3 flex justify-between items-center md:hidden dark:border dark:border-gray-600 dark:rounded-lg">
+      <nav className=" sticky top-0 z-50 bg-white shadow-md px-4 py-3 flex justify-between items-center md:hidden dark:border dark:border-gray-600 dark:rounded-lg">
         {/* Logo */}
         
          <div className="flex items-center">

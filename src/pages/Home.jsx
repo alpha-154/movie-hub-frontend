@@ -5,6 +5,7 @@ import Hero from "@/components/customComponents/Hero";
 import FeaturedMovies from "../components/customComponents/FeaturedMovies";
 import ReviewMovie from "@/components/customComponents/ReviewMovie";
 import TestimonialSection from "@/components/customComponents/Testimonial";
+import TopMoviesSection from "@/components/customComponents/TopMovies";
 
 const Home = () => {
   // dynamic title on the browser's title bar
@@ -53,6 +54,7 @@ const Home = () => {
       <FeaturedMovies/>
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-neutral-950 dark:text-gray-200 tracking-wide text-center mb-5 md:mb-10">Review Movie</h1>
       <ReviewMovie/>
+      <TopMoviesSection />
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-neutral-950 dark:text-gray-200 tracking-wide text-center mb-5 md:mb-10">Users Reviews</h1>
       <TestimonialSection/>
     </div>
