@@ -16,7 +16,7 @@ import Error from "./pages/Error";
 import { Toaster } from "./components/ui/sonner";
 import UpdateMovie from "./pages/UpdateMovie";
 import TrendingMovies from "./pages/TrendingMovies";
-
+import Contact from "./pages/Contact";
 
 //import 'aos/dist/aos.css'
 
@@ -38,7 +38,7 @@ function App() {
             path="/all-movies"
             element={
               <PrivateRoute>
-                <AllMovies/>
+                <AllMovies />
               </PrivateRoute>
             }
           />
@@ -46,7 +46,7 @@ function App() {
             path="/movie-details/:id"
             element={
               <PrivateRoute>
-                <MovieDetails/>
+                <MovieDetails />
               </PrivateRoute>
             }
           />
@@ -54,7 +54,7 @@ function App() {
             path="/add-movies"
             element={
               <PrivateRoute>
-                <AddMovie/>
+                <AddMovie />
               </PrivateRoute>
             }
           />
@@ -62,7 +62,7 @@ function App() {
             path="/favourite-movies"
             element={
               <PrivateRoute>
-                <FavouriteMovies/>
+                <FavouriteMovies />
               </PrivateRoute>
             }
           />
@@ -74,12 +74,12 @@ function App() {
               </PrivateRoute>
             }
           />
-         
+
           <Route
             path="/update-movie/:id"
             element={
               <PrivateRoute>
-                <UpdateMovie/>
+                <UpdateMovie />
               </PrivateRoute>
             }
           />
@@ -88,16 +88,21 @@ function App() {
             path="/update-profile"
             element={
               <PrivateRoute>
-                <UpdateProfile/>
+                <UpdateProfile />
               </PrivateRoute>
             }
           />
+          <Route path="/contact-us" element={<Contact />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Error />} />
       </Routes>
-      <Toaster className="max-sm:max-w-[350px]" richColors position="bottom-right" />
+      <Toaster
+        className="max-sm:max-w-[350px]"
+        richColors
+        position="bottom-right"
+      />
     </BrowserRouter>
   );
 }

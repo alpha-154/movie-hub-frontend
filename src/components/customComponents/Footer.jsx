@@ -6,7 +6,10 @@ import {
   Film,
   Star,
   Clapperboard,
-  Info 
+  Info ,
+  Facebook,
+  Twitter,
+  Instagram
 } from 'lucide-react';
 
 const Footer = () => {
@@ -120,7 +123,7 @@ const Footer = () => {
               rel="noopener noreferrer" 
               className="text-blue-500 hover:text-blue-600 transition-colors duration-300 hover:scale-110"
             >
-              <Mail className="h-6 w-6" />
+              <Facebook className="h-6 w-6" />
             </a>
             <a 
               href="https://twitter.com" 
@@ -128,7 +131,7 @@ const Footer = () => {
               rel="noopener noreferrer" 
               className="text-blue-400 hover:text-blue-500 transition-colors duration-300 hover:scale-110"
             >
-              <Mail className="h-6 w-6" />
+              <Instagram className="h-6 w-6" />
             </a>
             <a 
               href="https://instagram.com" 
@@ -136,7 +139,7 @@ const Footer = () => {
               rel="noopener noreferrer" 
               className="text-pink-500 hover:text-pink-600 transition-colors duration-300 hover:scale-110"
             >
-              <Mail className="h-6 w-6" />
+              <Twitter className="h-6 w-6" />
             </a>
             <a 
               href="https://github.com" 
